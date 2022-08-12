@@ -1,0 +1,13 @@
+.profile__edit-name {
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  max-width: 550px;
+}
+
+@media (max-width: 366px)  {
+  .profile__edit-name {
+    justify-content: center;
+    margin: 0 0 0 27px;
+  }
+}

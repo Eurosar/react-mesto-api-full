@@ -1,0 +1,11 @@
+.auth__register-link {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: opacity .3s;
+}
+
+.auth__register_link:hover {
+  opacity: .6;
+}

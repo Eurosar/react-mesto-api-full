@@ -1,0 +1,14 @@
+.profile__edit-avatar {
+  background-image: url("../../../icons/edit-avatar.svg");
+  background-repeat: no-repeat;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity .3s;
+  cursor: pointer;
+}
