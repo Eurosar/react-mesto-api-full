@@ -124,9 +124,9 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-40/',
+  baseUrl: 'https://api.eurosar.mesto.nomoredomains.sbs/',
   headers: {
-    authorization: 'ee4cf8c7-0556-4739-9a99-1aba3be1b2b6',
+    // authorization: 'ee4cf8c7-0556-4739-9a99-1aba3be1b2b6',
     'Content-Type': 'application/json'
   }
 });

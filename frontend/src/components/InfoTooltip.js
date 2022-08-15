@@ -1,10 +1,12 @@
 import PopupWithForm from './PopupWithForm';
+import success from '../icons/success.svg';
+import failed from '../icons/failed.svg';
+
 
 /**
  * Модальное окно об успешности входа/регистрации
  * @param isOpen
  * @param onClose
- * @param className
  * @param toolTipText
  * @param isSuccess
  * @returns {JSX.Element}
@@ -14,7 +16,6 @@ function InfoTooltip(
   {
     isOpen,
     onClose,
-    className,
     toolTipText,
     isSuccess
   }) {
@@ -23,7 +24,11 @@ function InfoTooltip(
       name="success"
       isOpen={isOpen}
       onClose={onClose}>
-      <div className={className}></div>
+      <img
+        className="popup__info-tooltip"
+        src={isSuccess ? success : failed}
+        alt={isSuccess ? "Success" : "Failed"}
+      />
       <h2 className="popup__title popup__title_center">{toolTipText}</h2>
     </PopupWithForm>
   );

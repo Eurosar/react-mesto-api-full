@@ -9,6 +9,7 @@ const { login, createUser } = require('./controllers/users');
 const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
 const { createUserValidator, loginValidator } = require('./validators/celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('cors');
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
@@ -23,6 +24,15 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 // Запускаем приложение в express
 const app = express();
+
+// Запускаем проверку CORS
+app.use(cors({
+  origin: [
+    'https://eurosar.mesto.nomoredomains.sbs',
+    'http://eurosar.mesto.nomoredomains.sbs',
+    'http://localhost:3000'
+    ]
+}));
 
 // Запускаем парсер
 app.use(bodyParser.json());

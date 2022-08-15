@@ -357,8 +357,8 @@ function App() {
             onRenderLoading={renderLoading}/>
           <InfoTooltip
             isOpen={isInfoTooltipOpen}
+            isSuccess={isSuccess}
             onClose={closeAllPopups}
-            className={isSuccess ? 'popup__success' : 'popup__failed'}
             toolTipText={isSuccess ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
           />
           <ImagePopup
