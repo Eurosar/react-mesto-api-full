@@ -31,7 +31,8 @@ app.use(cors({
     'https://eurosar.mesto.nomoredomains.sbs',
     'http://eurosar.mesto.nomoredomains.sbs',
     'http://localhost:3000'
-    ]
+    ],
+  credentials: true,
 }));
 
 // Запускаем парсер
