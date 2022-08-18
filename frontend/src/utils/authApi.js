@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.eurosar.mesto.nomoredomains.sbs';
 
 /**
  * Проверяем ответ с сервера на ошибки
@@ -25,6 +25,7 @@ export const register = ({ email, password }) => {
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ email, password })
   })
     .then(checkResponse);
@@ -42,6 +43,7 @@ export const authorize = ({ email, password }) => {
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ email, password })
   })
     .then(checkResponse);
@@ -58,7 +60,8 @@ export const checkToken = (token) => {
     headers: {
       "Content-Type": "application/json",
       "Authorization" : `Bearer ${token}`
-    }
+    },
+    credentials: 'include',
   })
     .then(checkResponse);
 }
