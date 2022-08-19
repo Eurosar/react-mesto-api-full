@@ -66,7 +66,7 @@ module.exports.deleteCard = (req, res, next) => {
       }
       // Если все в порядке, то удалим карточку
       return Card.findByIdAndRemove(id)
-        .then((data) => res.send({ data }))
+        .then((data) => res.send(data))
         .catch(next);
     })
     .catch((err) => {
@@ -102,7 +102,7 @@ module.exports.likeCard = (req, res, next) => {
         return next(ApiError.NotFoundError('Передан несуществующий _id карточки.'));
       }
       // Иначе вернем обновленную карточку с присвоенным like (status 200 по умолчанию)
-      return res.send({ data: card });
+      return res.send(card);
     })
     // Иначе вернем ошибки
     .catch((err) => {
@@ -143,7 +143,7 @@ module.exports.dislikeCard = (req, res, next) => {
         return next(ApiError.NotFoundError('Передан несуществующий _id карточки.'));
       }
       // Иначе вернем обновленную карточку с удаленным like (status 200 по умолчанию)
-      return res.send({ data: card });
+      return res.send(card);
     })
     .catch((err) => {
       // Если ошибка относится к ValidationError
