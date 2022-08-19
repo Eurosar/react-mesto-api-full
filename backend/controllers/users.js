@@ -18,7 +18,7 @@ function findUserById(id, res, next) {
         return next(ApiError.NotFoundError('Пользователь по указанному _id не найден'));
       }
       // Иначе вернем объект пользователя (status 200 по умолчанию)
-      return res.send({ data: user });
+      return res.send(user);
     })
     // Иначе вернем ошибки
     .catch((err) => {
@@ -85,7 +85,7 @@ module.exports.getUsers = (req, res, next) => {
   // Если все в порядке
     .then((users) => {
       // Возвращаем массив пользователей (status 200 по умолчанию)
-      res.send({ data: users });
+      res.send(users);
     })
   // Иначе возвращаем 500 ошибку
   // Все ошибки, которые не являются инстансами класса ApiError,
@@ -146,7 +146,7 @@ module.exports.updateUserProfile = (req, res, next) => {
         return next(ApiError.NotFoundError('Пользователь с указанным _id не найден.'));
       }
       // Иначе вернем обновленный объект пользователя (status 200 по умолчанию)
-      return res.send({ data: user });
+      return res.send(user);
     })
     .catch((err) => {
       // Если ошибка относится к ValidationError
@@ -188,7 +188,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
         return next(ApiError.NotFoundError('Пользователь с указанным _id не найден.'));
       }
       // Иначе вернем обновленный объект пользователя (status 200 по умолчанию)
-      return res.send({ data: user });
+      return res.send(user);
     })
     .catch((err) => {
       // Если ошибка относится к ValidationError
