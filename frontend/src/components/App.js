@@ -253,7 +253,7 @@ function App() {
       auth.checkToken(token)
         .then((response) => {
           if (response) {
-            const data = {...response.user};
+            const data = {...response};
             setUserData(data);
             setLoggedIn(true);
           }
