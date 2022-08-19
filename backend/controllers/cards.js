@@ -38,7 +38,7 @@ module.exports.getCards = (req, res, next) => {
   // Находим все карточки в БД
   Card.find({})
     // Если ошибок нет, то возвращаем массив карточек со статусом 200
-    .then((cards) => res.send({ cards }))
+    .then((cards) => res.send())
     // Иначе возвращаем ошибку 500
     .catch(next);
 };
