@@ -18,7 +18,7 @@ function findUserById(id, res, next) {
         return next(ApiError.NotFoundError('Пользователь по указанному _id не найден'));
       }
       // Иначе вернем объект пользователя (status 200 по умолчанию)
-      return res.send(user);
+      return res.send({ user });
     })
     // Иначе вернем ошибки
     .catch((err) => {
