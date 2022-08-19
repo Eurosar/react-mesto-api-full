@@ -15,7 +15,7 @@ module.exports.createCard = (req, res, next) => {
   // Создаем карточку с именем, ссылкой и id пользователя
   Card.create({ name, link, owner })
     // Если ошибок нет, то возвращаем полученную карточку со статусом 201
-    .then((card) => res.status(201).send({ data: card }))
+    .then((card) => res.status(201).send(card))
     // Иначе показываем ошибки
     .catch((err) => {
       // Если ошибка относится к ValidationError
