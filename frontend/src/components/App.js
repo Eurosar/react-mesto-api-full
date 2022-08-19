@@ -204,7 +204,7 @@ function App() {
       .then((data) => {
         if (data.token) {
           setLoggedIn(true);
-          localStorage.setItem('jwt', data.token);
+          // localStorage.setItem('jwt', data.token);
         }
       })
       .catch((err) => {
@@ -244,11 +244,20 @@ function App() {
       });
   }
 
+
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+
   /**
    * Создаем слушателя проверки токена пользователя
    */
   function checkToken() {
-    const token = localStorage.getItem('jwt');
+    // const token = localStorage.getItem('jwt');
+    const token = getCookie('jwt')
     if (token) {
       auth.checkToken(token)
         .then((response) => {

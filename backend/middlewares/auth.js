@@ -19,16 +19,15 @@ module.exports = (req, res, next) => {
   //
   // const token = authorization.replace('Bearer ', '');
 
-  console.log('/auth body:', req.body)
-  console.log('/auth cookies:', req.cookies)
 
-  // Если токен сохраянется в куки, то нужно будет подключить в файле app.js cookieParser
+  // Если токен сохраняется в куки, то нужно будет подключить в файле app.js cookieParser
   const token = req.cookies.jwt;
+  const { NODE_ENV, JWT_SECRET } = process.env;
   let payload;
 
+
   try {
-    // console.log('token:', token);
-    payload = jwt.verify(token, '5439a800e974a13f893bfbac5d9d9e5a81b8de4968ce72fe52b0737123281f0e');
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
   } catch (err) {
     return next(ApiError.Unauthorized('Необходима авторизация'));
   }

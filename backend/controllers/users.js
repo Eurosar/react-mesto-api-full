@@ -212,14 +212,13 @@ module.exports.login = (req, res, next) => {
   // Деструктурируем входящие от клиента данные
   const { email, password } = req.body;
 
-  console.log('login req body:', req.body);
-
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // Создадим токен
+      const { NODE_ENV, JWT_SECRET } = process.env;
       const token = jwt.sign(
         { _id: user._id },
-        '5439a800e974a13f893bfbac5d9d9e5a81b8de4968ce72fe52b0737123281f0e',
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
 

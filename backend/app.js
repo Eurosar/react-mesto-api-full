@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -11,8 +12,11 @@ const { createUserValidator, loginValidator } = require('./validators/celebrate'
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('cors');
 
+
 // Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+const { PORT = process.env.development ? 3001 : 3000 } = process.env;
+
+
 
 // Соединяемся с БД
 mongoose.connect('mongodb://localhost:27017/mestodb', {
