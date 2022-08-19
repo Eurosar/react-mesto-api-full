@@ -80,7 +80,6 @@ function App() {
 
           // Отрисуем карточки
           setCards([...cards]);
-
         })
         .catch((err) => console.log(err));
     }
