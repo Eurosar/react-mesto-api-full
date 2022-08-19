@@ -19,6 +19,9 @@ module.exports = (req, res, next) => {
   //
   // const token = authorization.replace('Bearer ', '');
 
+  console.log('/auth body:', req.body)
+  console.log('/auth cookies:', req.cookies)
+
   // Если токен сохраянется в куки, то нужно будет подключить в файле app.js cookieParser
   const token = req.cookies.jwt;
   let payload;
