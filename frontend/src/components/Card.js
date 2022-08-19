@@ -14,7 +14,7 @@ function Card(props) {
 
   // Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = props.owner._id === currentUser._id;
-  console.log(props.owner._id, currentUser._id);
+  // console.log(props.owner._id, currentUser._id);
 
   // Создаём переменную, которую после зададим в `className` для кнопки удаления
   const cardDeleteButtonClassName = (

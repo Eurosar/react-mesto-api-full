@@ -20,6 +20,7 @@ function Main(
 
   //Используем контекст пользователя для добавления его данных
   const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser);
 
   // Вернем HTML разметку страницы
   return (
