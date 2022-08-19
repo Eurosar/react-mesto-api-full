@@ -212,6 +212,8 @@ module.exports.login = (req, res, next) => {
   // Деструктурируем входящие от клиента данные
   const { email, password } = req.body;
 
+  console.log('login req body:', req.body);
+
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // Создадим токен

@@ -74,7 +74,7 @@ function App() {
       Promise.all([api.getProfileInfo(), api.getInitialCards()])
         // Деструктурируем ответ от сервера, чтобы было понятнее, что пришло
         .then(([userData, cards]) => {
-          console.log(cards);
+
           // Установим данные пользователя
           setCurrentUser(userData);
 
@@ -284,7 +284,7 @@ function App() {
    * Функция выхода из аккаунта
    */
   function signOut() {
-    localStorage.removeItem('jwt');
+    // localStorage.removeItem('jwt');
     setLoggedIn(false);
     history.push('/sign-in');
   }
