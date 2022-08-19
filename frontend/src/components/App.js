@@ -27,7 +27,7 @@ function App() {
 
   // Создаем переменную состояния данных авторизованного пользователя
   const [userData, setUserData] = useState({});
-  console.log(userData);
+
   // Переменная состояния открытия формы редактирования профиля
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
 
