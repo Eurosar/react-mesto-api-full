@@ -232,7 +232,7 @@ module.exports.login = (req, res, next) => {
           secure: true,
           sameSite: 'none',
         })
-        .send(token);
+        .send({ token });
     })
     .catch(() => next(ApiError.Unauthorized('Неверный логин или пароль')));
 };
