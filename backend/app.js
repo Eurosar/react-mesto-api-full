@@ -45,6 +45,12 @@ app.use(cookieParser());
 // Логер запросов подключаем до всех роутов
 app.use(requestLogger);
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 // Выводим роуты
 app.post('/signin', loginValidator, login);
 app.post('/signup', createUserValidator, createUser);

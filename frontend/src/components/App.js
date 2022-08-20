@@ -201,8 +201,8 @@ function App() {
   function handleLogin({email, password}) {
     setUserData({email, password});
     auth.authorize({email, password})
-      .then((res) => {
-        if (res.statusCode === 200) {
+      .then((data) => {
+        if (data.token) {
           setLoggedIn(true);
         }
       })
