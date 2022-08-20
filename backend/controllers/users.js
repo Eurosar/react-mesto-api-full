@@ -22,6 +22,7 @@ function findUserById(id, res, next) {
     })
     // Иначе вернем ошибки
     .catch((err) => {
+      res.clearCookie('jwt');
       // Если ошибка относится к CastError
       if (err.name === 'CastError') {
         // Вернем 400 ошибку
@@ -50,7 +51,7 @@ module.exports.createUser = (req, res, next) => {
     }))
     // Если все в порядке, вернем готовый объект со статусом 201
     // но без пароля
-    .then((user) => res.status(201).send({
+    .then((user) => res.clearCookie('jwt').status(201).send({
       name: user.name,
       about: user.about,
       avatar: user.avatar,
@@ -58,6 +59,7 @@ module.exports.createUser = (req, res, next) => {
     }))
     // Иначе
     .catch((err) => {
+      res.clearCookie('jwt');
       // Если ошибка относится к ValidationError
       if (err.name === 'ValidationError') {
         // Возвращаем 400 ошибку
@@ -229,8 +231,16 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           secure: true,
           sameSite: 'none',
-        })
-        .send({ token });
+        });
     })
     .catch(() => next(ApiError.Unauthorized('Неверный логин или пароль')));
+};
+
+/**
+ * Выходим из аккаунта и чистим jwt в cookie
+ * @param req
+ * @param res
+ */
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Вы успешно вышли из аккаунта' });
 };

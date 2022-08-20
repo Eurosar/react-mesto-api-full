@@ -1,12 +1,12 @@
-const express = require('express');
 require('dotenv').config();
+const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const router = require('./routes/index');
 const auth = require('./middlewares/auth');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
 const { createUserValidator, loginValidator } = require('./validators/celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -15,8 +15,6 @@ const cors = require('cors');
 
 // Слушаем 3000 порт
 const { PORT = process.env.development ? 3001 : 3000 } = process.env;
-
-
 
 // Соединяемся с БД
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -50,6 +48,7 @@ app.use(requestLogger);
 // Выводим роуты
 app.post('/signin', loginValidator, login);
 app.post('/signup', createUserValidator, createUser);
+app.post('/signout', logout);
 app.use('/', auth, router);
 
 // Логер ошибок подключается после роутов и до ошибок

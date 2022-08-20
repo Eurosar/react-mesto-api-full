@@ -201,10 +201,9 @@ function App() {
   function handleLogin({email, password}) {
     setUserData({email, password});
     auth.authorize({email, password})
-      .then((data) => {
-        if (data.token) {
+      .then((res) => {
+        if (res.statusCode === 200) {
           setLoggedIn(true);
-          // localStorage.setItem('jwt', data.token);
         }
       })
       .catch((err) => {
@@ -245,31 +244,31 @@ function App() {
   }
 
 
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
-
-
-  /**
-   * Создаем слушателя проверки токена пользователя
-   */
-  function checkToken() {
-    // const token = localStorage.getItem('jwt');
-    const token = getCookie('jwt')
-    if (token) {
-      auth.checkToken(token)
-        .then((response) => {
-          if (response) {
-            const data = {...response};
-            setUserData(data);
-            setLoggedIn(true);
-          }
-        })
-        .catch(err => console.log(err));
-    }
-  }
+  // function getCookie(name) {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) return parts.pop().split(';').shift();
+  // }
+  //
+  //
+  // /**
+  //  * Создаем слушателя проверки токена пользователя
+  //  */
+  // function checkToken() {
+  //   // const token = localStorage.getItem('jwt');
+  //   const token = getCookie('jwt')
+  //   if (token) {
+  //     auth.checkToken(token)
+  //       .then((response) => {
+  //         if (response) {
+  //           const data = {...response};
+  //           setUserData(data);
+  //           setLoggedIn(true);
+  //         }
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // }
 
   /**
    * Хук
@@ -293,7 +292,7 @@ function App() {
    * Функция выхода из аккаунта
    */
   function signOut() {
-    // localStorage.removeItem('jwt');
+    auth.logout();
     setLoggedIn(false);
     history.push('/sign-in');
   }
