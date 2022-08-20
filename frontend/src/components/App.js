@@ -59,9 +59,9 @@ function App() {
    * Блок побочных эффектов
    */
 
-  useEffect(() => {
-    checkToken();
-  }, []);
+  // useEffect(() => {
+  //   checkToken();
+  // }, []);
 
   useEffect(() => {
     if (loggedIn) {

@@ -208,7 +208,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
  * @param req
  * @param res
  * @param next
- * @returns {Promise<ResultType> | Promise<R> | Promise<any>}
+ * @returns {Promise<R> | Promise<R> | Promise<any>}
  */
 module.exports.login = (req, res, next) => {
   // Деструктурируем входящие от клиента данные
@@ -231,7 +231,8 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           secure: true,
           sameSite: 'none',
-        });
+        })
+        .send(token);
     })
     .catch(() => next(ApiError.Unauthorized('Неверный логин или пароль')));
 };
