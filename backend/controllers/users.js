@@ -22,7 +22,6 @@ function findUserById(id, res, next) {
     })
     // Иначе вернем ошибки
     .catch((err) => {
-      res.clearCookie('jwt');
       // Если ошибка относится к CastError
       if (err.name === 'CastError') {
         // Вернем 400 ошибку
@@ -59,7 +58,6 @@ module.exports.createUser = (req, res, next) => {
     }))
     // Иначе
     .catch((err) => {
-      res.clearCookie('jwt');
       // Если ошибка относится к ValidationError
       if (err.name === 'ValidationError') {
         // Возвращаем 400 ошибку
@@ -231,6 +229,7 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           secure: true,
           sameSite: 'none',
+          path: '/',
         })
         .send({ token });
     })

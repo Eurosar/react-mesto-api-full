@@ -9,13 +9,10 @@ const ApiError = require('../errors/ApiError');
  * @returns {*}
  */
 module.exports = (req, res, next) => {
-
   // Если токен сохраняется в куки, то нужно будет подключить в файле app.js cookieParser
   const token = req.cookies.jwt;
   const { NODE_ENV, JWT_SECRET } = process.env;
   let payload;
-
-
   try {
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
   } catch (err) {

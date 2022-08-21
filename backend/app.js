@@ -4,14 +4,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-const router = require('./routes/index');
-const auth = require('./middlewares/auth');
-const { login, createUser, logout } = require('./controllers/users');
-const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
-const { createUserValidator, loginValidator } = require('./validators/celebrate');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('cors');
-
+const routes = require('./routes/index');
+const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // Слушаем 3000 порт
 const { PORT = process.env.development ? 3001 : 3000 } = process.env;
@@ -32,8 +28,8 @@ app.use(cors({
   origin: [
     'https://eurosar.mesto.nomoredomains.sbs',
     'http://eurosar.mesto.nomoredomains.sbs',
-    'http://localhost:3000'
-    ],
+    'http://localhost:3000',
+  ],
   credentials: true,
 }));
 
@@ -52,10 +48,7 @@ app.get('/crash-test', () => {
 });
 
 // Выводим роуты
-app.post('/signin', loginValidator, login);
-app.post('/signup', createUserValidator, createUser);
-app.post('/signout', logout);
-app.use('/', auth, router);
+app.use(routes);
 
 // Логер ошибок подключается после роутов и до ошибок
 app.use(errorLogger);
